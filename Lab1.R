@@ -1,37 +1,48 @@
 Sys.setlocale("LC_TIME", "Russian")
+dates <- (readline(prompt = "Р’РІРµРґРёС‚Рµ РІСЂРµРјСЏ РЅР°С‡Р°Р»Р° (Р§Р§:РњРњ:РЎРЎ): "))
+if(nchar(dates) != 8) {
+	print("РќРµРїСЂР°РІРёР»СЊРЅРѕ СѓРєР°Р·Р°Р»Рё РІСЂРµРјСЏ РЅР°С‡Р°Р»Р°.\n")
+} else {
+	datef <- (readline(prompt = "Р’РІРµРґРёС‚Рµ РІСЂРµРјСЏ РєРѕРЅС†Р° (Р§Р§:РњРњ:РЎРЎ): "))
+	if (nchar(datef) !=8) {
+		print("РќРµРїСЂР°РІРёР»СЊРЅРѕ СѓРєР°Р·Р°Р»Рё РІСЂРµРјСЏ РєРѕРЅС†Р°.\n")
+	} else {
+		hours <- as.numeric(substr(dates, 1, 2))
+		minutes <- as.numeric(substr(dates, 4, 5))
+		seconds <- as.numeric(substr(dates, 7,8))
 
-dates <- (readline(prompt = "Введите время начала (ЧЧ ММ CC): "))
-hours <- as.numeric(substr(dates, 1, 2))
-minutes <- as.numeric(substr(dates, 4, 5))
-seconds <- as.numeric(substr(dates, 7,8))
+		hourf <- as.numeric(substr(datef, 1, 2))
+		minutef <- as.numeric(substr(datef, 4, 5))
+		secondf <- as.numeric(substr(datef, 7,8))
 
-datef <- (readline(prompt = "Введите время  конца (ЧЧ ММ CC): "))
-hourf <- as.numeric(substr(datef, 1, 2))
-minutef <- as.numeric(substr(datef, 4, 5))
-secondf <- as.numeric(substr(datef, 7,8))
-
-if(hours != "NA" & minutes != "NA"  & seconds != "NA" ) { 
-	if(hourf != "NA" & minutef != "NA"  & secondf != "NA" ) { 
-		if(hours < 0 | hours > 24) {
-			print("Вы вели не правильное время начала")
-		}
-		if(minutes < 0 | minutes > 60) {
-			print("Вы вели не правильное время начала")
-		}
-		if(seconds < 0 | seconds > 60) {
-			print("Вы вели не правильное время начала")
-		}
-		if(hourf < 0 | hourf > 24) {
-			print("Вы вели не правильное время конца")
-		}
-		if(minutef < 0 | minutef > 60) {
-			print("Вы вели не правильное время конца")
-		}
-		if(secondf < 0 | secondf > 60) {
-			print("Вы вели не правильное время конца")
+		if(hours != "NA" & minutes != "NA"  & seconds != "NA" ) { 
+			if(hourf != "NA" & minutef != "NA"  & secondf != "NA" ) { 
+				if(hours < 0 | hours > 24) {
+					print("РќРµРїСЂР°РІРёР»СЊРЅРѕ СѓРєР°Р·Р°Р»Рё С‡Р°СЃ РЅР°С‡Р°Р»Р°.\n")
+				} else if(minutes < 0 | minutes > 60) {
+					print("РќРµРїСЂР°РІРёР»СЊРЅРѕ СѓРєР°Р·Р°Р»Рё РјРёРЅСѓС‚Сѓ РЅР°С‡Р°Р»Р°.\n")
+				} else if(seconds < 0 | seconds > 60) {
+					print("РќРµРїСЂР°РІРёР»СЊРЅРѕ СѓРєР°Р·Р°Р»Рё СЃРµРєСѓРЅРґСѓ РЅР°С‡Р°Р»Р°.\n")
+				} else if(hourf < 0 | hourf > 24) {
+					print("РќРµРїСЂР°РІРёР»СЊРЅРѕ СѓРєР°Р·Р°Р»Рё С‡Р°СЃ РєРѕРЅС†Р°.\n")
+				} else if(minutef < 0 | minutef > 60) {
+					print("РќРµРїСЂР°РІРёР»СЊРЅРѕ СѓРєР°Р·Р°Р»Рё РјРёРЅСѓС‚Сѓ РєРѕРЅС†Р°.\n")
+				} else if(secondf < 0 | secondf > 60) {
+					print("РќРµРїСЂР°РІРёР»СЊРЅРѕ СѓРєР°Р·Р°Р»Рё СЃРµРєСѓРЅРґСѓ РєРѕРЅС†Р°.\n")
+				} else {
+					newtime <- (secondf + minutef * 60 + hourf * 3600)
+					newtime <- newtime  - (seconds + minutes * 60 + hours * 3600)				
+					newsecond <- newtime %% 60
+					newminute <- (newtime %% 3600) %/% 60
+					newhour <- newtime %/% 3600 
+					cat(sprintf("%02d %02d %02d", newhour, newminute, newsecond))
+				}
+			
+			} else {
+				print("РќРµРїСЂР°РІРёР»СЊРЅРѕ СѓРєР°Р·Р°Р»Рё РІСЂРµРјСЏ РєРѕРЅС†Р°.\n")
+			}
 		} else {
-			print("COOL")
+			print("РќРµРїСЂР°РІРёР»СЊРЅРѕ СѓРєР°Р·Р°Р»Рё РІСЂРµРјСЏ РЅР°С‡Р°Р»Р°.\n")
 		}
-		
 	}
 }
