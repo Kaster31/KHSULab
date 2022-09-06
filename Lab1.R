@@ -31,11 +31,13 @@ if(nchar(dates) != 8) {
 					print("Неправильно указали секунду конца.\n")
 				} else {
 					newtime <- (secondf + minutef * 60 + hourf * 3600)
-					newtime <- newtime  - (seconds + minutes * 60 + hours * 3600)				
+					newtime <- (newtime  - 
+						(seconds + minutes * 60 + hours * 3600))			
 					newsecond <- newtime %% 60
 					newminute <- (newtime %% 3600) %/% 60
 					newhour <- newtime %/% 3600 
-					cat(sprintf("%02d %02d %02d", newhour, newminute, newsecond))
+					cat(sprintf("%02d %02d %02d",
+						newhour, newminute, newsecond))
 				}
 			
 			} else {
